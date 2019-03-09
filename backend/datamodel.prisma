@@ -3,3 +3,11 @@ type User {
   name: String!
   email: String!
 }
+
+type Bathroom {
+  id: ID! @unique
+  title: String!
+  description: String!
+  address: String!
+  # user: User!
+}
