@@ -6,6 +6,9 @@ const Nav = () => (
     <Link href='/map'>
       <a>Map</a>
     </Link>
+    <Link href='/bathrooms'>
+      <a>Bathrooms</a>
+    </Link>
     <Link href='/signup'>
       <a>Signup</a>
     </Link>
