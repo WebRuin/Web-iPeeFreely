@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 class Bathroom extends Component {
   static propTypes = {
-    prop: PropTypes
+    bathroom: PropTypes.object.isRequired
   }
 
   render () {

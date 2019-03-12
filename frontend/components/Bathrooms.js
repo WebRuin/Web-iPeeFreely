@@ -31,7 +31,11 @@ class Bathrooms extends Component {
           {({ data, error, loading }) => {
             if (loading) return <p>Loading..</p>
             if (error) return <p>Error: {error.message}</p>
-            return <p>I found {data.bathrooms.length} bathrooms!</p>
+            return (
+              <BathroomList>
+                {data.bathrooms.map(bathroom => )}
+              </BathroomList>
+            )
           }}
         </Query>
       </div>
