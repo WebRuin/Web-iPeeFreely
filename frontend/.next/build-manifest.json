@@ -1,6 +1,6 @@
 {
   "devFiles": [
-    "static/development/dll/dll_4a2ab6ce0cb456fbfead.js"
+    "static/development/dll/dll_a0465ceb400e6bf8fc2b.js"
   ],
   "pages": {
     "/_app": [
@@ -11,7 +11,15 @@
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/bathrooms": [
+    "/index": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
+    "/map": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
+    "/": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ]

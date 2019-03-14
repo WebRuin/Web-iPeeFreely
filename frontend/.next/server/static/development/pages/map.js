@@ -88,29 +88,28 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./components/Bathrooms.js":
+/***/ "./components/GoogleMap.js":
 /*!*********************************!*\
-  !*** ./components/Bathrooms.js ***!
+  !*** ./components/GoogleMap.js ***!
   \*********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return GoogleMap; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "styled-components");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-apollo */ "react-apollo");
-/* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_apollo__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! graphql-tag */ "graphql-tag");
-/* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(graphql_tag__WEBPACK_IMPORTED_MODULE_3__);
-var _jsxFileName = "/home/tithos/Code/Web-iPeeFreely/frontend/components/Bathrooms.js";
+/* harmony import */ var google_map_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! google-map-react */ "google-map-react");
+/* harmony import */ var google_map_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(google_map_react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! styled-components */ "styled-components");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_2__);
+var _jsxFileName = "/home/tithos/Code/Web-iPeeFreely/frontend/components/GoogleMap.js";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -130,101 +129,104 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  query ALL_BATHROOMS_QUERY {\n    bathrooms {\n      id\n      title\n      description\n      address\n    }\n  }\n"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 
 
+var Map = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
+  displayName: "GoogleMap__Map",
+  componentId: "o1i8m3-0"
+})(["width:100%;height:calc(100vh - 73px);"]);
 
-
-var ALL_BATHROOMS_QUERY = graphql_tag__WEBPACK_IMPORTED_MODULE_3___default()(_templateObject());
-var BathroomList = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.div.withConfig({
-  displayName: "Bathrooms__BathroomList",
-  componentId: "dqmw41-0"
-})(["display:grid;grid-template-columns:1fr 1fr;grid-gap:60px;max-width:{props => props.theme.maxWidth};margin:0 auto;"]);
-
-var Bathrooms =
+var GoogleMap =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(Bathrooms, _Component);
+  _inherits(GoogleMap, _Component);
 
-  function Bathrooms() {
-    _classCallCheck(this, Bathrooms);
+  function GoogleMap(props) {
+    var _this;
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Bathrooms).apply(this, arguments));
-  }
+    _classCallCheck(this, GoogleMap);
 
-  _createClass(Bathrooms, [{
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(GoogleMap).call(this, props));
+    _this.state = {
+      coords: [],
+      mapCenter: {
+        lat: 37.9521987,
+        lng: -122.03259079999998
+      },
+      mapZoom: 15 // this.getCoords = this.getCoords.bind(this)
+
+    };
+    return _this;
+  } // if ('geolocation' in navigator) {
+  //   let self = this
+  //   navigator.geolocation.getCurrentPosition(function(position) {
+  //     console.log('set location')
+  //     self.setState({
+  //       mapCenter: { lat: position.coords.latitude, lng:position.coords.longitude }
+  //     })
+  //   });
+  // } else {
+  //   console.log('not set')
+  // }
+
+
+  _createClass(GoogleMap, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 28
-        },
-        __self: this
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 29
-        },
-        __self: this
-      }, "Bathrooms"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_apollo__WEBPACK_IMPORTED_MODULE_2__["Query"], {
-        query: ALL_BATHROOMS_QUERY,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 30
-        },
-        __self: this
-      }, function (_ref) {
-        var data = _ref.data,
-            error = _ref.error,
-            loading = _ref.loading;
-        if (loading) return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      var mapCoords = this.state.coords.map(function (mapCoord, index) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(BathroomMarker, {
+          style: {
+            height: '30px',
+            width: '160px'
+          },
+          key: index,
+          lat: mapCoord.lat,
+          lng: mapCoord.lng,
+          name: mapCoord.name,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 32
+            lineNumber: 36
           },
           __self: this
-        }, "Loading..");
-        if (error) return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 33
-          },
-          __self: this
-        }, "Error: ", error.message);
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 34
-          },
-          __self: this
-        }, "I found ", data.bathrooms.length, " bathrooms!");
-      }));
+        });
+      });
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Map, {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 45
+        },
+        __self: this
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(google_map_react__WEBPACK_IMPORTED_MODULE_1___default.a, {
+        bootstrapURLKeys: {
+          key: 'AIzaSyC0ttWNm3Ttowr_f4nG1B-wUcXY6ircTUA'
+        },
+        defaultCenter: {
+          lat: 37.5670279,
+          lng: -122.3238017
+        },
+        center: this.state.mapCenter,
+        defaultZoom: this.state.mapZoom,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 46
+        },
+        __self: this
+      }, mapCoords));
     }
   }]);
 
-  return Bathrooms;
+  return GoogleMap;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (Bathrooms);
+
 
 /***/ }),
 
-/***/ "./pages/bathrooms.js":
-/*!****************************!*\
-  !*** ./pages/bathrooms.js ***!
-  \****************************/
+/***/ "./pages/map.js":
+/*!**********************!*\
+  !*** ./pages/map.js ***!
+  \**********************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -232,51 +234,45 @@ function (_Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_Bathrooms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Bathrooms */ "./components/Bathrooms.js");
-var _jsxFileName = "/home/tithos/Code/Web-iPeeFreely/frontend/pages/bathrooms.js";
+/* harmony import */ var _components_GoogleMap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/GoogleMap */ "./components/GoogleMap.js");
+var _jsxFileName = "/home/tithos/Code/Web-iPeeFreely/frontend/pages/map.js";
 
 
 
-var BathroomsPage = function BathroomsPage(props) {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+var Map = function Map(props) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_GoogleMap__WEBPACK_IMPORTED_MODULE_1__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 4
+      lineNumber: 3
     },
     __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Bathrooms__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 5
-    },
-    __self: this
-  }));
+  });
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (BathroomsPage);
+/* harmony default export */ __webpack_exports__["default"] = (Map);
 
 /***/ }),
 
-/***/ 3:
-/*!**********************************!*\
-  !*** multi ./pages/bathrooms.js ***!
-  \**********************************/
+/***/ 4:
+/*!****************************!*\
+  !*** multi ./pages/map.js ***!
+  \****************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! ./pages/bathrooms.js */"./pages/bathrooms.js");
+module.exports = __webpack_require__(/*! ./pages/map.js */"./pages/map.js");
 
 
 /***/ }),
 
-/***/ "graphql-tag":
-/*!******************************!*\
-  !*** external "graphql-tag" ***!
-  \******************************/
+/***/ "google-map-react":
+/*!***********************************!*\
+  !*** external "google-map-react" ***!
+  \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = require("graphql-tag");
+module.exports = require("google-map-react");
 
 /***/ }),
 
@@ -288,17 +284,6 @@ module.exports = require("graphql-tag");
 /***/ (function(module, exports) {
 
 module.exports = require("react");
-
-/***/ }),
-
-/***/ "react-apollo":
-/*!*******************************!*\
-  !*** external "react-apollo" ***!
-  \*******************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("react-apollo");
 
 /***/ }),
 
@@ -314,4 +299,4 @@ module.exports = require("styled-components");
 /***/ })
 
 /******/ });
-//# sourceMappingURL=bathrooms.js.map
+//# sourceMappingURL=map.js.map
