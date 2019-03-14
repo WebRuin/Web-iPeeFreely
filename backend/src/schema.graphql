@@ -1,7 +1,13 @@
 # import * from './generated/prisma.graphql'
 
 type Mutation {
-  createBathroom(title: String, description: String, address: String): Bathroom!
+  createBathroom(
+    title: String
+    description: String
+    address: String
+    image: String
+    largeImage: String
+  ): Bathroom!
 }
 
 type Query {

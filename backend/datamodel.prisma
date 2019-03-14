@@ -9,5 +9,7 @@ type Bathroom {
   title: String!
   description: String!
   address: String!
+  image: String
+  largeImage: String
   # user: User!
 }

@@ -11,15 +11,11 @@
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/index": [
+    "/add": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/map": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
-    "/": [
+    "/bathrooms": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ]

@@ -278,7 +278,7 @@ var Nav = function Nav() {
     },
     __self: this
   }, "Bathrooms")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-    href: "/signup",
+    href: "/add",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 12
@@ -290,8 +290,8 @@ var Nav = function Nav() {
       lineNumber: 13
     },
     __self: this
-  }, "Signup")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-    href: "/me",
+  }, "Add Bathroom")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    href: "/signup",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 15
@@ -301,6 +301,19 @@ var Nav = function Nav() {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 16
+    },
+    __self: this
+  }, "Signup")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
+    href: "/me",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 18
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 19
     },
     __self: this
   }, "Account")));
