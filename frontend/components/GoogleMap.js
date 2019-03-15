@@ -7,17 +7,12 @@ const Map = styled.div`
   height: calc(100vh - 73px);
 `;
 
-export default class GoogleMap extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      coords: [],
-      mapCenter: { lat: 37.9521987, lng: -122.03259079999998 },
-      mapZoom: 15
-    };
-
-    // this.getCoords = this.getCoords.bind(this)
-  }
+class GoogleMap extends Component {
+  state = {
+    coords: [],
+    mapCenter: { lat: 37.9521987, lng: -122.03259079999998 },
+    mapZoom: 15
+  };
 
   // if ('geolocation' in navigator) {
   //   let self = this
@@ -55,3 +50,5 @@ export default class GoogleMap extends Component {
     );
   }
 }
+
+export default GoogleMap;

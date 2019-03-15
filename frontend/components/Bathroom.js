@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Link from "next/link";
 import Title from "./styles/Title";
 import ItemStyles from "./styles/ItemStyles";
+import DeleteItem from "./DeleteItem";
 
 class Bathroom extends Component {
   static propTypes = {
@@ -36,7 +37,7 @@ class Bathroom extends Component {
             <p>Edit</p>
           </a>
         </Link>
-        <button>Delete</button>
+        <DeleteItem id={bathroom.id}>Delete this bathroom</DeleteItem>
       </ItemStyles>
     );
   }
