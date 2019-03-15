@@ -1,4 +1,4 @@
-import CreateBathroom from "../components/CreatBathroom";
+import CreateBathroom from "../components/CreateBathroom";
 const Add = props => (
   <div>
     <CreateBathroom />

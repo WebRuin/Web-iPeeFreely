@@ -13,16 +13,17 @@ class Bathroom extends Component {
     const { bathroom } = this.props;
     return (
       <ItemStyles>
-        <Link
-          href={{
-            pathname: "/bathroom",
-            query: { id: bathroom.id }
-          }}
-        >
-          <a>
-            <Title>{bathroom.title}</Title>
-          </a>
-        </Link>
+        {bathroom.image && <img src={bathroom.image} alt={bathroom.title} />}
+        <Title>
+          <Link
+            href={{
+              pathname: "/bathroom",
+              query: { id: bathroom.id }
+            }}
+          >
+            <a>{bathroom.title}</a>
+          </Link>
+        </Title>
         <p>{bathroom.description}</p>
         <address>{bathroom.address}</address>
         <Link

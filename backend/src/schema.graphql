@@ -5,6 +5,8 @@ type Mutation {
     title: String
     description: String
     address: String
+    lat: Float
+    lng: Float
     image: String
     largeImage: String
   ): Bathroom!

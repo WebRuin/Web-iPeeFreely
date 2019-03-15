@@ -159,6 +159,20 @@ function (_Component) {
           lineNumber: 15
         },
         __self: this
+      }, bathroom.image && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: bathroom.image,
+        alt: bathroom.title,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 16
+        },
+        __self: this
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styles_Title__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 17
+        },
+        __self: this
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
         href: {
           pathname: "/bathroom",
@@ -168,31 +182,25 @@ function (_Component) {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 16
+          lineNumber: 18
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 22
-        },
-        __self: this
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styles_Title__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 23
+          lineNumber: 24
         },
         __self: this
       }, bathroom.title))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 26
+          lineNumber: 27
         },
         __self: this
       }, bathroom.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("address", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 27
+          lineNumber: 28
         },
         __self: this
       }, bathroom.address), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_2___default.a, {
@@ -204,25 +212,25 @@ function (_Component) {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 28
+          lineNumber: 29
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 34
+          lineNumber: 35
         },
         __self: this
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 35
+          lineNumber: 36
         },
         __self: this
       }, "Edit"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 38
+          lineNumber: 39
         },
         __self: this
       }, "Delete"));
@@ -244,11 +252,12 @@ _defineProperty(Bathroom, "propTypes", {
 /*!*********************************!*\
   !*** ./components/Bathrooms.js ***!
   \*********************************/
-/*! exports provided: default */
+/*! exports provided: default, ALL_BATHROOMS_QUERY */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ALL_BATHROOMS_QUERY", function() { return ALL_BATHROOMS_QUERY; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "styled-components");
@@ -279,7 +288,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  query ALL_BATHROOMS_QUERY {\n    bathrooms {\n      id\n      title\n      description\n      address\n    }\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  query ALL_BATHROOMS_QUERY {\n    bathrooms {\n      id\n      title\n      description\n      address\n      image\n      largeImage\n    }\n  }\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -302,6 +311,12 @@ var BathroomList = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.div.
 })(["display:grid;grid-template-columns:1fr 1fr;grid-gap:60px;max-width:", ";margin:0 auto;"], function (props) {
   return props.theme.maxWidth;
 });
+var Inner = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.div.withConfig({
+  displayName: "Bathrooms__Inner",
+  componentId: "dqmw41-1"
+})(["max-width:", ";margin:0 auto;padding:4rem 2rem;"], function (props) {
+  return props.theme.maxWidth;
+});
 
 var Bathrooms =
 /*#__PURE__*/
@@ -317,47 +332,42 @@ function (_Component) {
   _createClass(Bathrooms, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Inner, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 29
+          lineNumber: 37
         },
         __self: this
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 30
-        },
-        __self: this
-      }, "Bathrooms"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_apollo__WEBPACK_IMPORTED_MODULE_2__["Query"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_apollo__WEBPACK_IMPORTED_MODULE_2__["Query"], {
         query: ALL_BATHROOMS_QUERY,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 31
+          lineNumber: 38
         },
         __self: this
       }, function (_ref) {
         var data = _ref.data,
             error = _ref.error,
             loading = _ref.loading;
+        console.log(data);
         if (loading) return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 33
+            lineNumber: 41
           },
           __self: this
         }, "Loading..");
         if (error) return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 34
+            lineNumber: 42
           },
           __self: this
         }, "Error: ", error.message);
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(BathroomList, {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 36
+            lineNumber: 44
           },
           __self: this
         }, data.bathrooms.map(function (bathroom) {
@@ -366,7 +376,7 @@ function (_Component) {
             key: bathroom.id,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 37
+              lineNumber: 46
             },
             __self: this
           });
@@ -379,6 +389,7 @@ function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (Bathrooms);
+
 
 /***/ }),
 

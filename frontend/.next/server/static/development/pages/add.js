@@ -88,30 +88,45 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./components/CreatBathroom.js":
-/*!*************************************!*\
-  !*** ./components/CreatBathroom.js ***!
-  \*************************************/
-/*! exports provided: default */
+/***/ "./components/CreateBathroom.js":
+/*!**************************************!*\
+  !*** ./components/CreateBathroom.js ***!
+  \**************************************/
+/*! exports provided: default, CREATE_BATHROOM_MUTATION */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-apollo */ "react-apollo");
-/* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_apollo__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! graphql-tag */ "graphql-tag");
-/* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(graphql_tag__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _styles_Form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./styles/Form */ "./components/styles/Form.js");
-var _jsxFileName = "/home/tithos/Code/Web-iPeeFreely/frontend/components/CreatBathroom.js";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CREATE_BATHROOM_MUTATION", function() { return CREATE_BATHROOM_MUTATION; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "@babel/runtime/regenerator");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-apollo */ "react-apollo");
+/* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_apollo__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! graphql-tag */ "graphql-tag");
+/* harmony import */ var graphql_tag__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(graphql_tag__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! next/router */ "next/router");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react_places_autocomplete__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-places-autocomplete */ "react-places-autocomplete");
+/* harmony import */ var react_places_autocomplete__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_places_autocomplete__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _styles_Form__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./styles/Form */ "./components/styles/Form.js");
+/* harmony import */ var _ErrorMessage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./ErrorMessage */ "./components/ErrorMessage.js");
+
+var _jsxFileName = "/home/tithos/Code/Web-iPeeFreely/frontend/components/CreateBathroom.js";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -131,10 +146,26 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n  mutation CREATE_BATHROOM_MUTATION(\n    $title: String!\n    $description: String!\n    $address: String!\n    $lat: Float\n    $lng: Float\n    $image: String # $largeImage: String\n  ) {\n    createBathroom(\n      title: $title\n      description: $description\n      address: $address\n      lat: $lat\n      lng: $lng\n      image: $image\n      largeImage: $image\n    ) {\n      id\n    }\n  }\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 
 
 
+
+
+
+
+var CREATE_BATHROOM_MUTATION = graphql_tag__WEBPACK_IMPORTED_MODULE_3___default()(_templateObject());
 
 var CreateBathroom =
 /*#__PURE__*/
@@ -157,12 +188,93 @@ function (_Component) {
     _defineProperty(_assertThisInitialized(_this), "state", {
       title: "",
       description: "",
-      address: ""
+      address: "",
+      image: "",
+      largeImage: "",
+      lat: "",
+      lng: ""
     });
 
     _defineProperty(_assertThisInitialized(_this), "handleChange", function (e) {
-      console.log(e);
+      var _e$target = e.target,
+          name = _e$target.name,
+          type = _e$target.type,
+          value = _e$target.value;
+      var val = type === "number" ? parseFloat(value) : value;
+
+      _this.setState(_defineProperty({}, name, val));
     });
+
+    _defineProperty(_assertThisInitialized(_this), "handleAddressChange", function (address) {
+      _this.setState({
+        address: address
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleSelect", function (address) {
+      Object(react_places_autocomplete__WEBPACK_IMPORTED_MODULE_5__["geocodeByAddress"])(address).then(function (results) {
+        return Object(react_places_autocomplete__WEBPACK_IMPORTED_MODULE_5__["getLatLng"])(results[0]);
+      }).then(function (latLng) {
+        var lat = latLng.lat,
+            lng = latLng.lng;
+
+        _this.setState({
+          lat: lat,
+          lng: lng
+        });
+      }).catch(function (error) {
+        return console.error("Error", error);
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "uploadFile",
+    /*#__PURE__*/
+    function () {
+      var _ref = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(e) {
+        var files, data, res, file;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                console.log("uploading file...");
+                files = e.target.files;
+                data = new FormData();
+                data.append("file", files[0]);
+                data.append("upload_preset", "iPeeFreely");
+                _context.next = 7;
+                return fetch("https://api.cloudinary.com/v1_1/tihos/image/upload", {
+                  method: "POST",
+                  body: data
+                });
+
+              case 7:
+                res = _context.sent;
+                _context.next = 10;
+                return res.json();
+
+              case 10:
+                file = _context.sent;
+                console.log(file);
+
+                _this.setState({
+                  image: file.secure_url,
+                  largeImage: file.eager[0].secure_url
+                });
+
+              case 13:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+
+      return function (_x) {
+        return _ref.apply(this, arguments);
+      };
+    }());
 
     return _this;
   }
@@ -170,46 +282,329 @@ function (_Component) {
   _createClass(CreateBathroom, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_styles_Form__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      var _this2 = this;
+
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_apollo__WEBPACK_IMPORTED_MODULE_2__["Mutation"], {
+        mutation: CREATE_BATHROOM_MUTATION,
+        variables: this.state,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 19
+          lineNumber: 95
         },
         __self: this
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("fieldset", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 20
-        },
-        __self: this
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "title",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 21
-        },
-        __self: this
-      }, "Title", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
-        id: "title",
-        name: "title",
-        placeholder: "Title",
-        required: true,
-        value: this.state.title,
-        onChange: this.handleChange,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 23
-        },
-        __self: this
-      }))));
+      }, function (createBathroom, _ref2) {
+        var error = _ref2.error,
+            loading = _ref2.loading;
+        return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_styles_Form__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          onSubmit:
+          /*#__PURE__*/
+          function () {
+            var _ref3 = _asyncToGenerator(
+            /*#__PURE__*/
+            _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(e) {
+              var res;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+                while (1) {
+                  switch (_context2.prev = _context2.next) {
+                    case 0:
+                      // Stop the form from submiting
+                      e.preventDefault(); // Call the mutation
+
+                      _context2.next = 3;
+                      return createBathroom();
+
+                    case 3:
+                      res = _context2.sent;
+                      // Change use to single item page
+                      console.log(res);
+                      next_router__WEBPACK_IMPORTED_MODULE_4___default.a.push({
+                        pathname: "/bathroom",
+                        query: {
+                          id: res.data.createBathroom.id
+                        }
+                      });
+
+                    case 6:
+                    case "end":
+                      return _context2.stop();
+                  }
+                }
+              }, _callee2);
+            }));
+
+            return function (_x2) {
+              return _ref3.apply(this, arguments);
+            };
+          }(),
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 97
+          },
+          __self: this
+        }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_ErrorMessage__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          error: error,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 111
+          },
+          __self: this
+        }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("fieldset", {
+          disabled: loading,
+          "aria-busy": loading,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 112
+          },
+          __self: this
+        }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+          htmlFor: "file",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 113
+          },
+          __self: this
+        }, "Image", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+          type: "file",
+          id: "file",
+          name: "file",
+          placeholder: "Upload an image",
+          required: true,
+          onChange: _this2.uploadFile,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 115
+          },
+          __self: this
+        }), _this2.state.image && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+          width: "200",
+          src: _this2.state.image,
+          alt: "Upload Preview",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 124
+          },
+          __self: this
+        })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+          htmlFor: "title",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 132
+          },
+          __self: this
+        }, "Title", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+          type: "text",
+          id: "title",
+          name: "title",
+          placeholder: "Title",
+          required: true,
+          value: _this2.state.title,
+          onChange: _this2.handleChange,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 134
+          },
+          __self: this
+        })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("lable", {
+          htmlFor: "address",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 145
+          },
+          __self: this
+        }, "Address", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_places_autocomplete__WEBPACK_IMPORTED_MODULE_5___default.a, {
+          value: _this2.state.address,
+          onChange: _this2.handleAddressChange,
+          onSelect: _this2.handleSelect,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 147
+          },
+          __self: this
+        }, function (_ref4) {
+          var getInputProps = _ref4.getInputProps,
+              suggestions = _ref4.suggestions,
+              getSuggestionItemProps = _ref4.getSuggestionItemProps,
+              loading = _ref4.loading;
+          return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 158
+            },
+            __self: this
+          }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", _extends({}, getInputProps({
+            name: "address",
+            required: true,
+            placeholder: "Address",
+            className: "location-search-input"
+          }), {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 159
+            },
+            __self: this
+          })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+            className: "autocomplete-dropdown-container",
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 167
+            },
+            __self: this
+          }, loading && react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 168
+            },
+            __self: this
+          }, "Loading..."), suggestions.map(function (suggestion) {
+            var className = suggestion.active ? "suggestion-item--active" : "suggestion-item"; // inline style for demonstration purpose
+
+            var style = suggestion.active ? {
+              backgroundColor: "#fafafa",
+              cursor: "pointer"
+            } : {
+              backgroundColor: "#ffffff",
+              cursor: "pointer"
+            };
+            return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", _extends({}, getSuggestionItemProps(suggestion, {
+              className: className,
+              style: style
+            }), {
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 178
+              },
+              __self: this
+            }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 184
+              },
+              __self: this
+            }, suggestion.description));
+          })));
+        })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+          htmlFor: "description",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 208
+          },
+          __self: this
+        }, "Description", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("textarea", {
+          type: "text",
+          id: "description",
+          name: "description",
+          placeholder: "Please describe the bathroom",
+          required: true,
+          value: _this2.state.description,
+          onChange: _this2.handleChange,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 210
+          },
+          __self: this
+        })), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+          type: "submit",
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 220
+          },
+          __self: this
+        }, "Submit")));
+      });
     }
   }]);
 
   return CreateBathroom;
-}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+}(react__WEBPACK_IMPORTED_MODULE_1__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (CreateBathroom);
+
+
+/***/ }),
+
+/***/ "./components/ErrorMessage.js":
+/*!************************************!*\
+  !*** ./components/ErrorMessage.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! styled-components */ "styled-components");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! prop-types */ "prop-types");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_2__);
+var _jsxFileName = "/home/tithos/Code/Web-iPeeFreely/frontend/components/ErrorMessage.js";
+
+
+
+var ErrorStyles = styled_components__WEBPACK_IMPORTED_MODULE_0___default.a.div.withConfig({
+  displayName: "ErrorMessage__ErrorStyles",
+  componentId: "sc-11u5fgj-0"
+})(["padding:2rem;background:white;margin:2rem 0;border:1px solid rgba(0,0,0,0.05);border-left:5px solid red;p{margin:0;font-weight:100;}strong{margin-right:1rem;}"]);
+
+var DisplayError = function DisplayError(_ref) {
+  var error = _ref.error;
+  if (!error || !error.message) return null;
+
+  if (error.networkError && error.networkError.result && error.networkError.result.errors.length) {
+    return error.networkError.result.errors.map(function (error, i) {
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(ErrorStyles, {
+        key: i,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 25
+        },
+        __self: this
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+        "data-test": "graphql-error",
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 26
+        },
+        __self: this
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("strong", {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 27
+        },
+        __self: this
+      }, "Shoot!"), error.message.replace('GraphQL error: ', '')));
+    });
+  }
+
+  return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(ErrorStyles, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 34
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
+    "data-test": "graphql-error",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 35
+    },
+    __self: this
+  }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("strong", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 36
+    },
+    __self: this
+  }, "Shoot!"), error.message.replace('GraphQL error: ', '')));
+};
+
+DisplayError.defaultProps = {
+  error: {}
+};
+DisplayError.propTypes = {
+  error: prop_types__WEBPACK_IMPORTED_MODULE_2___default.a.object
+};
+/* harmony default export */ __webpack_exports__["default"] = (DisplayError);
 
 /***/ }),
 
@@ -247,7 +642,7 @@ var Form = styled_components__WEBPACK_IMPORTED_MODULE_0___default.a.form.withCon
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_CreatBathroom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/CreatBathroom */ "./components/CreatBathroom.js");
+/* harmony import */ var _components_CreateBathroom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/CreateBathroom */ "./components/CreateBathroom.js");
 var _jsxFileName = "/home/tithos/Code/Web-iPeeFreely/frontend/pages/add.js";
 
 
@@ -259,7 +654,7 @@ var Add = function Add(props) {
       lineNumber: 3
     },
     __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_CreatBathroom__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_CreateBathroom__WEBPACK_IMPORTED_MODULE_1__["default"], {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 4
@@ -272,7 +667,7 @@ var Add = function Add(props) {
 
 /***/ }),
 
-/***/ 3:
+/***/ 5:
 /*!****************************!*\
   !*** multi ./pages/add.js ***!
   \****************************/
@@ -284,6 +679,17 @@ module.exports = __webpack_require__(/*! ./pages/add.js */"./pages/add.js");
 
 /***/ }),
 
+/***/ "@babel/runtime/regenerator":
+/*!*********************************************!*\
+  !*** external "@babel/runtime/regenerator" ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("@babel/runtime/regenerator");
+
+/***/ }),
+
 /***/ "graphql-tag":
 /*!******************************!*\
   !*** external "graphql-tag" ***!
@@ -292,6 +698,28 @@ module.exports = __webpack_require__(/*! ./pages/add.js */"./pages/add.js");
 /***/ (function(module, exports) {
 
 module.exports = require("graphql-tag");
+
+/***/ }),
+
+/***/ "next/router":
+/*!******************************!*\
+  !*** external "next/router" ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("next/router");
+
+/***/ }),
+
+/***/ "prop-types":
+/*!*****************************!*\
+  !*** external "prop-types" ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("prop-types");
 
 /***/ }),
 
@@ -314,6 +742,17 @@ module.exports = require("react");
 /***/ (function(module, exports) {
 
 module.exports = require("react-apollo");
+
+/***/ }),
+
+/***/ "react-places-autocomplete":
+/*!********************************************!*\
+  !*** external "react-places-autocomplete" ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("react-places-autocomplete");
 
 /***/ }),
 
