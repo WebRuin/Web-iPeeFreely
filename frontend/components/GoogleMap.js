@@ -31,8 +31,6 @@ class GoogleMap extends Component {
       <BathroomMarker
         style={{ height: "30px", width: "160px" }}
         key={index}
-        lat={mapCoord.lat}
-        lng={mapCoord.lng}
         name={mapCoord.name}
       />
     ));
