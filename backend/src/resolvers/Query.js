@@ -1,12 +1,13 @@
-const { forwardTo } = require('prisma-binding')
+const { forwardTo } = require("prisma-binding");
 
 const Query = {
-  bathrooms: forwardTo('db')
+  bathrooms: forwardTo("db"),
+  bathroom: forwardTo("db")
   // async items(parent, args, ctx, info) {
   //   const items = await ctx.db.query.items();
 
   //   return items;
   // }
-}
+};
 
-module.exports = Query
+module.exports = Query;

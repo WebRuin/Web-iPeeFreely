@@ -10,9 +10,16 @@ type Mutation {
     image: String
     largeImage: String
   ): Bathroom!
+  updateBathroom(
+    id: ID!
+    title: String
+    description: String
+    address: String
+  ): Bathroom!
   deleteBathroom(id: ID!): Bathroom
 }
 
 type Query {
   bathrooms: [Bathroom]!
+  bathroom(where: BathroomWhereUniqueInput!): Bathroom
 }

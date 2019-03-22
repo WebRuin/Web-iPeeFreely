@@ -13,13 +13,17 @@ const Mutations = {
 
     return bathroom;
   },
-  // createDog(parent, args, ctx, info) {
-  //   global.dogs = global.dogs || [];
-  //   // Create a dog
-  //   const newDog = { name: args.name};
-  //   global.dogs.push(newDog);
-  //   return newDog;
-  // },
+  updateBathroom(parent, args, ctx, info) {
+    // First take a copy of the updates
+    const updates = { ...args }
+    // Remove the id of the updates
+    delete updates.id;
+    // Run the update methos
+    return ctx.db.mutation.updateBathroom({
+      data: updates,
+      where: args.id,
+    }, info)
+  }
   async deleteBathroom(parent, args, ctx, info) {
     const where = { id: args.id };
     // 1. find the item

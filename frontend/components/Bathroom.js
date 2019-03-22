@@ -27,17 +27,17 @@ class Bathroom extends Component {
         </Title>
         <p>{bathroom.description}</p>
         <address>{bathroom.address}</address>
-        <Link
-          href={{
-            pathname: "update",
-            query: { id: bathroom.id }
-          }}
-        >
-          <a>
-            <p>Edit</p>
-          </a>
-        </Link>
-        <DeleteItem id={bathroom.id}>Delete this bathroom</DeleteItem>
+        <div className="buttonList">
+          <Link
+            href={{
+              pathname: "update",
+              query: { id: bathroom.id }
+            }}
+          >
+            <a>Edit</a>
+          </Link>
+          <DeleteItem id={bathroom.id}>Delete this bathroom</DeleteItem>
+        </div>
       </ItemStyles>
     );
   }
