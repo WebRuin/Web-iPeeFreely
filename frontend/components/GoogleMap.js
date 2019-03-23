@@ -30,17 +30,22 @@ class GoogleMap extends Component {
     mapZoom: 15
   };
 
-  // if ("geolocation" in navigator) {
-  //   let self = this
-  //   navigator.geolocation.getCurrentPosition(function(position) {
-  //     console.log('set location')
-  //     self.setState({
-  //       mapCenter: { lat: position.coords.latitude, lng:position.coords.longitude }
-  //     })
-  //   });
-  // } else {
-  //   console.log('not set')
-  // }
+  componentDidMount() {
+    if ("geolocation" in navigator) {
+      let self = this;
+      navigator.geolocation.getCurrentPosition(function(position) {
+        console.log("set location");
+        self.setState({
+          mapCenter: {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          }
+        });
+      });
+    } else {
+      console.log("not set");
+    }
+  }
 
   render() {
     return (
