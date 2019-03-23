@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
+import { ALL_BATHROOMS_QUERY } from "./Bathrooms";
 
 const DELETE_BATHROOM_MUTATION = gql`
   mutation DELETE_ITEM_MUTATION($id: ID!) {
@@ -11,6 +12,16 @@ const DELETE_BATHROOM_MUTATION = gql`
 `;
 
 class DeleteBathroom extends Component {
+  update = (cache, payload) => {
+    // 1. Read the cache for the items we want
+    const data = cache.readQuery({ query: ALL_BATHROOMS_QUERY });
+    // 2. Filter the deleted item out of the page
+    data.bathrooms = data.bathrooms.filter(
+      item => item.id !== payload.data.deleteBathroom.id
+    );
+    // 3. Put the items back!
+    cache.writeQuery({ query: ALL_BATHROOMS_QUERY, data });
+  };
   render() {
     return (
       <Mutation

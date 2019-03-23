@@ -10,12 +10,16 @@ type Mutation {
     image: String
     largeImage: String
   ): Bathroom!
+
   updateBathroom(
     id: ID!
     title: String
     description: String
     address: String
+    lat: Float
+    lng: Float
   ): Bathroom!
+
   deleteBathroom(id: ID!): Bathroom
 }
 
