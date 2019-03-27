@@ -16,8 +16,9 @@ const CREATE_BATHROOM_MUTATION = gql`
     $address: String!
     $lat: Float
     $lng: Float
-    $image: String # $largeImage: String
-  ) {
+    $image: String
+  ) # $largeImage: String
+  {
     createBathroom(
       title: $title
       description: $description

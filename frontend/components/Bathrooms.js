@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import Bathroom from "./Bathroom";
+import Error from "./ErrorMessage";
 
 const ALL_BATHROOMS_QUERY = gql`
   query ALL_BATHROOMS_QUERY {
@@ -34,22 +35,22 @@ const Inner = styled.div`
 class Bathrooms extends Component {
   render() {
     return (
-      <Inner>
-        <Query query={ALL_BATHROOMS_QUERY}>
-          {({ data, error, loading }) => {
-            console.log(data);
-            if (loading) return <p>Loading...</p>;
-            if (error) return <p>Error: {error.message}</p>;
-            return (
+      <Query query={ALL_BATHROOMS_QUERY}>
+        {({ data, error, loading }) => {
+          console.log(data);
+          if (loading) return <p>Loading</p>;
+          if (error) return <Error error={error} />;
+          return (
+            <Inner>
               <BathroomList>
                 {data.bathrooms.map(bathroom => (
                   <Bathroom bathroom={bathroom} key={bathroom.id} />
                 ))}
               </BathroomList>
-            );
-          }}
-        </Query>
-      </Inner>
+            </Inner>
+          );
+        }}
+      </Query>
     );
   }
 }

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import MapMarker from "./MapMarker";
+import Error from "./ErrorMessage";
 
 const ALL_BATHROOMS_QUERY = gql`
   query ALL_BATHROOMS_QUERY {
@@ -53,11 +54,11 @@ class GoogleMap extends Component {
         {({ data, error, loading }) => {
           console.log(data);
           if (loading) return <p>Loading..</p>;
-          if (error) return <p>Error: {error.message}</p>;
+          if (error) return <Error error={error} />;
           return (
             <Map>
               <GoogleMapReact
-                // bootstrapURLKeys={{ key: "AIzaSyC0ttWNm3Ttowr_f4nG1B-wUcXY6ircTUA" }}
+                // bootstrapURLKeys={{ key: "key=AIzaSyC0ttWNm3Ttowr_f4nG1B-wUcXY6ircTUA&libraries=places" }}
                 defaultCenter={{ lat: 37.5670279, lng: -122.3238017 }}
                 center={this.state.mapCenter}
                 defaultZoom={this.state.mapZoom}
@@ -66,6 +67,7 @@ class GoogleMap extends Component {
                   <MapMarker
                     style={{ height: "30px", width: "160px" }}
                     key={bathroom.id}
+                    id={bathroom.id}
                     lat={bathroom.lat}
                     lng={bathroom.lng}
                     title={bathroom.title}
