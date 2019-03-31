@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Mutation } from "react-apollo";
+import styled from "styled-components";
 import gql from "graphql-tag";
 import Router from "next/router";
 import PlacesAutocomplete, {
@@ -16,9 +17,8 @@ const CREATE_BATHROOM_MUTATION = gql`
     $address: String!
     $lat: Float
     $lng: Float
-    $image: String
-  ) # $largeImage: String
-  {
+    $image: String # $largeImage: String
+  ) {
     createBathroom(
       title: $title
       description: $description
@@ -31,6 +31,12 @@ const CREATE_BATHROOM_MUTATION = gql`
       id
     }
   }
+`;
+
+const Inner = styled.div`
+  max-width: ${props => props.theme.maxWidth};
+  margin: 0 auto;
+  padding: 4rem 2rem;
 `;
 
 class CreateBathroom extends Component {
@@ -96,104 +102,111 @@ class CreateBathroom extends Component {
     return (
       <Mutation mutation={CREATE_BATHROOM_MUTATION} variables={this.state}>
         {(createBathroom, { error, loading }) => (
-          <Form
-            onSubmit={async e => {
-              // Stop the form from submiting
-              e.preventDefault();
-              // Call the mutation
-              const res = await createBathroom();
-              // Change use to single item page
-              console.log(res);
-              Router.push({
-                pathname: "/bathroom",
-                query: { id: res.data.createBathroom.id }
-              });
-            }}
-          >
-            <Error error={error} />
-            <fieldset disabled={loading} aria-busy={loading}>
-              <label htmlFor="file">
-                Image
-                <input
-                  type="file"
-                  id="file"
-                  name="file"
-                  placeholder="Upload an image"
-                  required
-                  onChange={this.uploadFile}
-                />
-                {this.state.image && (
-                  <img
-                    width="200"
-                    src={this.state.image}
-                    alt="Upload Preview"
+          <Inner>
+            <Form
+              onSubmit={async e => {
+                // Stop the form from submiting
+                e.preventDefault();
+                // Call the mutation
+                const res = await createBathroom();
+                // Change use to single item page
+                console.log(res);
+                Router.push({
+                  pathname: "/bathroom",
+                  query: { id: res.data.createBathroom.id }
+                });
+              }}
+            >
+              <Error error={error} />
+              <fieldset disabled={loading} aria-busy={loading}>
+                <label htmlFor="file">
+                  Image
+                  <input
+                    type="file"
+                    id="file"
+                    name="file"
+                    placeholder="Upload an image"
+                    required
+                    onChange={this.uploadFile}
                   />
-                )}
-              </label>
-
-              <label htmlFor="title">
-                Title
-                <input
-                  type="text"
-                  id="title"
-                  name="title"
-                  placeholder="Title"
-                  required
-                  value={this.state.title}
-                  onChange={this.handleChange}
-                />
-              </label>
-
-              <lable htmlFor="address">
-                Address
-                <PlacesAutocomplete
-                  value={this.state.address}
-                  onChange={this.handleAddressChange}
-                  onSelect={this.handleSelect}
-                >
-                  {({
-                    getInputProps,
-                    suggestions,
-                    getSuggestionItemProps,
-                    loading
-                  }) => (
-                    <div>
-                      <input
-                        {...getInputProps({
-                          name: "address",
-                          required: true,
-                          placeholder: "Address",
-                          className: "location-search-input"
-                        })}
-                      />
-                      <div className="autocomplete-dropdown-container">
-                        {loading && <div>Loading...</div>}
-                        {suggestions.map(suggestion => {
-                          const className = suggestion.active
-                            ? "suggestion-item--active"
-                            : "suggestion-item";
-                          // inline style for demonstration purpose
-                          const style = suggestion.active
-                            ? { backgroundColor: "#fafafa", cursor: "pointer" }
-                            : { backgroundColor: "#ffffff", cursor: "pointer" };
-                          return (
-                            <div
-                              {...getSuggestionItemProps(suggestion, {
-                                className,
-                                style
-                              })}
-                            >
-                              <span>{suggestion.description}</span>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </div>
+                  {this.state.image && (
+                    <img
+                      width="200"
+                      src={this.state.image}
+                      alt="Upload Preview"
+                    />
                   )}
-                </PlacesAutocomplete>
-              </lable>
+                </label>
 
-              {/* <label htmlFor="address">
+                <label htmlFor="title">
+                  Title
+                  <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    placeholder="Title"
+                    required
+                    value={this.state.title}
+                    onChange={this.handleChange}
+                  />
+                </label>
+
+                <lable htmlFor="address">
+                  Address
+                  <PlacesAutocomplete
+                    value={this.state.address}
+                    onChange={this.handleAddressChange}
+                    onSelect={this.handleSelect}
+                  >
+                    {({
+                      getInputProps,
+                      suggestions,
+                      getSuggestionItemProps,
+                      loading
+                    }) => (
+                      <div>
+                        <input
+                          {...getInputProps({
+                            name: "address",
+                            required: true,
+                            placeholder: "Address",
+                            className: "location-search-input"
+                          })}
+                        />
+                        <div className="autocomplete-dropdown-container">
+                          {loading && <div>Loading...</div>}
+                          {suggestions.map(suggestion => {
+                            const className = suggestion.active
+                              ? "suggestion-item--active"
+                              : "suggestion-item";
+                            // inline style for demonstration purpose
+                            const style = suggestion.active
+                              ? {
+                                  backgroundColor: "#fafafa",
+                                  cursor: "pointer"
+                                }
+                              : {
+                                  backgroundColor: "#ffffff",
+                                  cursor: "pointer"
+                                };
+                            return (
+                              <div
+                                {...getSuggestionItemProps(suggestion, {
+                                  className,
+                                  style
+                                })}
+                              >
+                                <span>{suggestion.description}</span>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
+                  </PlacesAutocomplete>
+                </lable>
+
+                {/* <label htmlFor="address">
                 Address
                 <input
                   type="text"
@@ -207,21 +220,22 @@ class CreateBathroom extends Component {
                 />
               </label> */}
 
-              <label htmlFor="description">
-                Description
-                <textarea
-                  type="text"
-                  id="description"
-                  name="description"
-                  placeholder="Please describe the bathroom"
-                  required
-                  value={this.state.description}
-                  onChange={this.handleChange}
-                />
-              </label>
-              <button type="submit">Submit</button>
-            </fieldset>
-          </Form>
+                <label htmlFor="description">
+                  Description
+                  <textarea
+                    type="text"
+                    id="description"
+                    name="description"
+                    placeholder="Please describe the bathroom"
+                    required
+                    value={this.state.description}
+                    onChange={this.handleChange}
+                  />
+                </label>
+                <button type="submit">Submit</button>
+              </fieldset>
+            </Form>
+          </Inner>
         )}
       </Mutation>
     );

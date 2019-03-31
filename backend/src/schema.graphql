@@ -1,5 +1,9 @@
 # import * from './generated/prisma.graphql'
 
+type SuccessMessage {
+  message: String
+}
+
 type Mutation {
   createBathroom(
     title: String
@@ -21,9 +25,22 @@ type Mutation {
   ): Bathroom!
 
   deleteBathroom(id: ID!): Bathroom
+
+  signup(email: String!, password: String!, name: String!): User!
+
+  signin(email: String!, password: String!): User!
+
+  signout: SuccessMessage
 }
 
 type Query {
-  bathrooms: [Bathroom]!
+  bathrooms(
+    where: BathroomWhereInput
+    orderBy: BathroomOrderByInput
+    skip: Int
+    first: Int
+  ): [Bathroom]!
   bathroom(where: BathroomWhereUniqueInput!): Bathroom
+  bathroomsConnection(where: BathroomWhereInput): BathroomConnection!
+  me: User
 }

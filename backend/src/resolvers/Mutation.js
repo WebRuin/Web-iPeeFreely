@@ -1,6 +1,9 @@
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
 const Mutations = {
   async createBathroom(parent, args, ctx, info) {
-    // TODO Check if the are logged in
+    // TODO Check if the user is logged in
 
     const bathroom = await ctx.db.mutation.createBathroom(
       {
@@ -31,12 +34,64 @@ const Mutations = {
   },
   async deleteBathroom(parent, args, ctx, info) {
     const where = { id: args.id };
-    // 1. find the item
+    // 1. find the bathroom
     const bathroom = await ctx.db.query.bathroom({ where }, `{ id title}`);
-    // 2. Check if they own that item, or have the permissions
+    // 2. Check if they own that bathroom, or have the permissions
     // TODO
     // 3. Delete it!
     return ctx.db.mutation.deleteBathroom({ where }, info);
+  },
+  async signup(parent, args, ctx, info) {
+    // lowercase their email
+    args.email = args.email.toLowerCase();
+    // hash thier password
+    const password = await bcrypt.hash(args.password, 10);
+    // create the user in the database
+    const user = await ctx.db.mutation.createUser(
+      {
+        data: {
+          ...args,
+          password,
+          permissions: { set: ["USER"] }
+        }
+      },
+      info
+    );
+    // create the JWT token for the user
+    const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
+    // we set the JWT as a cookie on the response
+    ctx.response.cookie("token", token, {
+      httpOnly: true,
+      maxAge: 1000 * 60 * 60 * 24 * 365 // 1 year cookie
+    });
+    // Finally we return the user to the browser
+    return user;
+  },
+
+  async signin(parent, { email, password }, ctx, info) {
+    // 1. check if there is a user with that email
+    const user = await ctx.db.query.user({ where: { email } });
+    if (!user) {
+      throw new Error(`No such user found for email ${email}`);
+    }
+    // 2. check if there password is correct
+    const valid = await bcrypt.compare(password, user.password);
+    if (!valid) {
+      throw new Error("Invalid password!");
+    }
+    // 3. generate the JWT token
+    const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
+    // 4. set the cookie with the token
+    ctx.response.cookie("token", token, {
+      httpOnly: true,
+      maxAge: 1000 * 60 * 60 * 24 * 365 // 1 year cookie
+    });
+    // 5. ruturn the user
+    return user;
+  },
+  signout(parent, args, ctx, info) {
+    ctx.response.clearCookie("token");
+    return { message: "Good Bye!" };
   }
 };
 
