@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { randomBytes } = require("crypto");
 const { promisify } = require("util");
+const { transport, makeANiceEmail } = require("../email");
 
 const Mutations = {
   async createBathroom(parent, args, ctx, info) {
@@ -109,9 +110,20 @@ const Mutations = {
       where: { email: args.email },
       data: { resetToken, resetTokenExpiry }
     });
-    console.log(res);
-    return { message: "Thanks!" };
     // 3. email the that reset token
+    const emailRes = await transport.sendMail({
+      // TODO set up
+      from: "tim.smith@gmail.com",
+      to: user.email,
+      subject: "iPeeFreely | Your password reset token",
+      html: makeANiceEmail(`Your password reset token is here! 
+      \n\n
+      <a href="${
+        process.env.FRONTEND_URL
+      }/reset?resetToken=${resetToken}">Click here to reset</a>`)
+    });
+    // 4. return the message
+    return { message: "Thanks!" };
   },
   async resetPassword(parent, args, ctx, info) {
     // 1. check if the passwords match
