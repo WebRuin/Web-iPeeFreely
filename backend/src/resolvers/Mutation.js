@@ -6,7 +6,9 @@ const { transport, makeANiceEmail } = require("../email");
 
 const Mutations = {
   async createBathroom(parent, args, ctx, info) {
-    // TODO Check if the user is logged in
+    if (!ctx.request.userId) {
+      throw new Error("You must be logged in to do that!");
+    }
 
     const bathroom = await ctx.db.mutation.createBathroom(
       {

@@ -51,7 +51,6 @@ class Bathrooms extends Component {
           }}
         >
           {({ data, error, loading }) => {
-            console.log(data);
             if (loading) return <p>Loading</p>;
             if (error) return <Error error={error} />;
             return (

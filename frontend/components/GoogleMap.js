@@ -58,7 +58,9 @@ class GoogleMap extends Component {
           return (
             <Map>
               <GoogleMapReact
-                // bootstrapURLKeys={{ key: "key=AIzaSyC0ttWNm3Ttowr_f4nG1B-wUcXY6ircTUA&libraries=places" }}
+                // bootstrapURLKeys={{
+                //   key: "key=AIzaSyC0ttWNm3Ttowr_f4nG1B-wUcXY6ircTUA"
+                // }}
                 defaultCenter={{ lat: 37.5670279, lng: -122.3238017 }}
                 center={this.state.mapCenter}
                 defaultZoom={this.state.mapZoom}

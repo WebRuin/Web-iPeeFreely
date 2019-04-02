@@ -1,7 +1,11 @@
 import CreateBathroom from "../components/CreateBathroom";
+import PleaseSignIn from "../components/PleaseSignIn";
+
 const Add = props => (
   <div>
-    <CreateBathroom />
+    <PleaseSignIn>
+      <CreateBathroom />
+    </PleaseSignIn>
   </div>
 );
 

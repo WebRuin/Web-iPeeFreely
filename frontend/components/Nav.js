@@ -10,11 +10,11 @@ const Nav = () => (
         <Link href="/bathrooms">
           <a>Bathrooms</a>
         </Link>
+        <Link href="/map">
+          <a>Map</a>
+        </Link>
         {me && (
           <>
-            <Link href="/map">
-              <a>Map</a>
-            </Link>
             <Link href="/add">
               <a>Add Bathroom</a>
             </Link>
