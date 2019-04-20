@@ -8,17 +8,21 @@ enum Permission {
 }
 
 type User {
-  id: ID! @unique
+  id: ID! @id
+  updatedAt: DateTime! @updatedAt
+  createdAt: DateTime! @createdAt
   name: String!
   email: String! @unique
   password: String!
   resetToken: String
   resetTokenExpiry: String
-  permissions: [Permission]
+  permissions: [Permission] @scalarList(strategy: AUTO)
 }
 
 type Bathroom {
-  id: ID! @unique
+  id: ID! @id
+  updatedAt: DateTime! @updatedAt
+  createdAt: DateTime! @createdAt
   title: String!
   description: String!
   address: String!

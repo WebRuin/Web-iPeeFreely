@@ -1,5 +1,5 @@
 # source: https://us1.prisma.sh/tim-smith-131869/ipeefreely/dev
-# timestamp: Thu Mar 28 2019 23:38:05 GMT-0700 (PDT)
+# timestamp: Fri Apr 19 2019 15:35:28 GMT-0700 (PDT)
 
 type AggregateBathroom {
   count: Int!
@@ -16,6 +16,8 @@ type BatchPayload {
 
 type Bathroom implements Node {
   id: ID!
+  updatedAt: DateTime!
+  createdAt: DateTime!
   title: String!
   description: String!
   address: String!
@@ -23,6 +25,7 @@ type Bathroom implements Node {
   lng: Float
   image: String
   largeImage: String
+  user: User!
 }
 
 """A connection to a list of items."""
@@ -44,6 +47,7 @@ input BathroomCreateInput {
   lng: Float
   image: String
   largeImage: String
+  user: UserCreateOneInput!
 }
 
 """An edge in a connection."""
@@ -58,6 +62,10 @@ type BathroomEdge {
 enum BathroomOrderByInput {
   id_ASC
   id_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
   title_ASC
   title_DESC
   description_ASC
@@ -72,14 +80,12 @@ enum BathroomOrderByInput {
   image_DESC
   largeImage_ASC
   largeImage_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-  createdAt_ASC
-  createdAt_DESC
 }
 
 type BathroomPreviousValues {
   id: ID!
+  updatedAt: DateTime!
+  createdAt: DateTime!
   title: String!
   description: String!
   address: String!
@@ -136,6 +142,7 @@ input BathroomUpdateInput {
   lng: Float
   image: String
   largeImage: String
+  user: UserUpdateOneRequiredInput
 }
 
 input BathroomUpdateManyMutationInput {
@@ -197,6 +204,50 @@ input BathroomWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
   title: String
 
   """All values that are not equal to given value."""
@@ -441,11 +492,14 @@ input BathroomWhereInput {
 
   """All values not ending with the given string."""
   largeImage_not_ends_with: String
+  user: UserWhereInput
 }
 
 input BathroomWhereUniqueInput {
   id: ID
 }
+
+scalar DateTime
 
 """
 The `Long` scalar type represents non-fractional signed whole numeric values.
@@ -454,18 +508,18 @@ Long can represent values between -(2^63) and 2^63 - 1.
 scalar Long
 
 type Mutation {
-  createUser(data: UserCreateInput!): User!
   createBathroom(data: BathroomCreateInput!): Bathroom!
-  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  createUser(data: UserCreateInput!): User!
   updateBathroom(data: BathroomUpdateInput!, where: BathroomWhereUniqueInput!): Bathroom
-  deleteUser(where: UserWhereUniqueInput!): User
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   deleteBathroom(where: BathroomWhereUniqueInput!): Bathroom
-  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  deleteUser(where: UserWhereUniqueInput!): User
   upsertBathroom(where: BathroomWhereUniqueInput!, create: BathroomCreateInput!, update: BathroomUpdateInput!): Bathroom!
-  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   updateManyBathrooms(data: BathroomUpdateManyMutationInput!, where: BathroomWhereInput): BatchPayload!
-  deleteManyUsers(where: UserWhereInput): BatchPayload!
+  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
   deleteManyBathrooms(where: BathroomWhereInput): BatchPayload!
+  deleteManyUsers(where: UserWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -505,12 +559,12 @@ enum Permission {
 }
 
 type Query {
-  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   bathrooms(where: BathroomWhereInput, orderBy: BathroomOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Bathroom]!
-  user(where: UserWhereUniqueInput!): User
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   bathroom(where: BathroomWhereUniqueInput!): Bathroom
-  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  user(where: UserWhereUniqueInput!): User
   bathroomsConnection(where: BathroomWhereInput, orderBy: BathroomOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): BathroomConnection!
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
 
   """Fetches an object given its ID"""
   node(
@@ -520,12 +574,14 @@ type Query {
 }
 
 type Subscription {
-  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
   bathroom(where: BathroomSubscriptionWhereInput): BathroomSubscriptionPayload
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
 }
 
 type User implements Node {
   id: ID!
+  updatedAt: DateTime!
+  createdAt: DateTime!
   name: String!
   email: String!
   password: String!
@@ -554,6 +610,11 @@ input UserCreateInput {
   permissions: UserCreatepermissionsInput
 }
 
+input UserCreateOneInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
+}
+
 input UserCreatepermissionsInput {
   set: [Permission!]
 }
@@ -570,6 +631,10 @@ type UserEdge {
 enum UserOrderByInput {
   id_ASC
   id_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
   name_ASC
   name_DESC
   email_ASC
@@ -580,14 +645,12 @@ enum UserOrderByInput {
   resetToken_DESC
   resetTokenExpiry_ASC
   resetTokenExpiry_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-  createdAt_ASC
-  createdAt_DESC
 }
 
 type UserPreviousValues {
   id: ID!
+  updatedAt: DateTime!
+  createdAt: DateTime!
   name: String!
   email: String!
   password: String!
@@ -635,6 +698,15 @@ input UserSubscriptionWhereInput {
   node: UserWhereInput
 }
 
+input UserUpdateDataInput {
+  name: String
+  email: String
+  password: String
+  resetToken: String
+  resetTokenExpiry: String
+  permissions: UserUpdatepermissionsInput
+}
+
 input UserUpdateInput {
   name: String
   email: String
@@ -653,8 +725,20 @@ input UserUpdateManyMutationInput {
   permissions: UserUpdatepermissionsInput
 }
 
+input UserUpdateOneRequiredInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
+  update: UserUpdateDataInput
+  upsert: UserUpsertNestedInput
+}
+
 input UserUpdatepermissionsInput {
   set: [Permission!]
+}
+
+input UserUpsertNestedInput {
+  update: UserUpdateDataInput!
+  create: UserCreateInput!
 }
 
 input UserWhereInput {
@@ -706,6 +790,50 @@ input UserWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
   name: String
 
   """All values that are not equal to given value."""
