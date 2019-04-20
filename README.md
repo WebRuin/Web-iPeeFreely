@@ -3,7 +3,13 @@
 ## A crowd sourced urban bathroom locator
 
 ### Stack
-- Meteor
-- React
 
-I am migrating the code from https://github.com/WebRuin/brapp to rebuild the app with Meteor.
+#### Frontend
+- React.js
+- Apollo Client
+
+#### Backend
+- GraphQL Yoga
+- Prisma
+
+Based on the [Fullstack Advanced React and GraphQL](https://advancedreact.com/) course by Wes Bos
