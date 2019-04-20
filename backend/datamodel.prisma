@@ -16,7 +16,7 @@ type User {
   password: String!
   resetToken: String
   resetTokenExpiry: String
-  permissions: [Permission] @scalarList(strategy: AUTO)
+  permissions: [Permission] @scalarList(strategy: RELATION)
 }
 
 type Bathroom {
