@@ -1,9 +1,10 @@
-import React, { Component } from "react";
-import { Mutation } from "react-apollo";
-import styled from "styled-components";
-import gql from "graphql-tag";
-import Form from "./styles/Form";
-import Error from "./ErrorMessage";
+import React, { Component } from 'react';
+import { Mutation } from 'react-apollo';
+import styled from 'styled-components';
+import gql from 'graphql-tag';
+import Form from './styles/Form';
+import Error from './ErrorMessage';
+import Inner from './styles/Inner';
 
 const REQUEST_RESET_MUTATION = gql`
   mutation REQUEST_RESET_MUTATION($email: String!) {
@@ -13,15 +14,9 @@ const REQUEST_RESET_MUTATION = gql`
   }
 `;
 
-const Inner = styled.div`
-  max-width: ${props => props.theme.maxWidth};
-  margin: 0 auto;
-  padding: 4rem 2rem;
-`;
-
 class RequestReset extends Component {
   state = {
-    email: ""
+    email: ''
   };
 
   saveToState = e => {
@@ -39,7 +34,7 @@ class RequestReset extends Component {
                 e.preventDefault();
                 await reset();
                 this.setState({
-                  password: ""
+                  password: ''
                 });
               }}
             >

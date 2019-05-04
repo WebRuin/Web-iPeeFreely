@@ -1,9 +1,10 @@
-import React, { Component } from "react";
-import gql from "graphql-tag";
-import { Query } from "react-apollo";
-import Error from "./ErrorMessage";
-import styled from "styled-components";
-import Head from "next/head";
+import React, { Component } from 'react';
+import gql from 'graphql-tag';
+import { Query } from 'react-apollo';
+import Error from './ErrorMessage';
+import styled from 'styled-components';
+import Head from 'next/head';
+import Inner from './styles/Inner';
 
 const SINGLE_BATHROOM_QUERY = gql`
   query SINGLE_BATHROOM_QUERY($id: ID!) {
@@ -15,12 +16,6 @@ const SINGLE_BATHROOM_QUERY = gql`
       largeImage
     }
   }
-`;
-
-const Inner = styled.div`
-  max-width: ${props => props.theme.maxWidth};
-  margin: 0 auto;
-  padding: 4rem 2rem;
 `;
 
 const SingleBathroomStyles = styled.div`

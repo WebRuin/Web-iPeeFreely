@@ -1,14 +1,15 @@
-import React, { Component } from "react";
-import { Mutation } from "react-apollo";
-import styled from "styled-components";
-import gql from "graphql-tag";
-import Router from "next/router";
+import React, { Component } from 'react';
+import { Mutation } from 'react-apollo';
+import styled from 'styled-components';
+import gql from 'graphql-tag';
+import Router from 'next/router';
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng
-} from "react-places-autocomplete";
-import Form from "./styles/Form";
-import Error from "./ErrorMessage";
+} from 'react-places-autocomplete';
+import Form from './styles/Form';
+import Error from './ErrorMessage';
+import Inner from './styles/Inner';
 
 const CREATE_BATHROOM_MUTATION = gql`
   mutation CREATE_BATHROOM_MUTATION(
@@ -33,26 +34,20 @@ const CREATE_BATHROOM_MUTATION = gql`
   }
 `;
 
-const Inner = styled.div`
-  max-width: ${props => props.theme.maxWidth};
-  margin: 0 auto;
-  padding: 4rem 2rem;
-`;
-
 class CreateBathroom extends Component {
   state = {
-    title: "",
-    description: "",
-    address: "",
-    image: "",
-    largeImage: "",
-    lat: "",
-    lng: ""
+    title: '',
+    description: '',
+    address: '',
+    image: '',
+    largeImage: '',
+    lat: '',
+    lng: ''
   };
 
   handleChange = e => {
     const { name, type, value } = e.target;
-    const val = type === "number" ? parseFloat(value) : value;
+    const val = type === 'number' ? parseFloat(value) : value;
     this.setState({
       [name]: val
     });
@@ -73,20 +68,20 @@ class CreateBathroom extends Component {
           lng
         });
       })
-      .catch(error => console.error("Error", error));
+      .catch(error => console.error('Error', error));
   };
 
   uploadFile = async e => {
-    console.log("uploading file...");
+    console.log('uploading file...');
     const files = e.target.files;
     const data = new FormData();
-    data.append("file", files[0]);
-    data.append("upload_preset", "iPeeFreely");
+    data.append('file', files[0]);
+    data.append('upload_preset', 'iPeeFreely');
 
     const res = await fetch(
-      "https://api.cloudinary.com/v1_1/tihos/image/upload",
+      'https://api.cloudinary.com/v1_1/tihos/image/upload',
       {
-        method: "POST",
+        method: 'POST',
         body: data
       }
     );
@@ -112,7 +107,7 @@ class CreateBathroom extends Component {
                 // Change use to single item page
                 console.log(res);
                 Router.push({
-                  pathname: "/bathroom",
+                  pathname: '/bathroom',
                   query: { id: res.data.createBathroom.id }
                 });
               }}
@@ -167,27 +162,27 @@ class CreateBathroom extends Component {
                       <div>
                         <input
                           {...getInputProps({
-                            name: "address",
+                            name: 'address',
                             required: true,
-                            placeholder: "Address",
-                            className: "location-search-input"
+                            placeholder: 'Address',
+                            className: 'location-search-input'
                           })}
                         />
                         <div className="autocomplete-dropdown-container">
                           {loading && <div>Loading...</div>}
                           {suggestions.map(suggestion => {
                             const className = suggestion.active
-                              ? "suggestion-item--active"
-                              : "suggestion-item";
+                              ? 'suggestion-item--active'
+                              : 'suggestion-item';
                             // inline style for demonstration purpose
                             const style = suggestion.active
                               ? {
-                                  backgroundColor: "#fafafa",
-                                  cursor: "pointer"
+                                  backgroundColor: '#fafafa',
+                                  cursor: 'pointer'
                                 }
                               : {
-                                  backgroundColor: "#ffffff",
-                                  cursor: "pointer"
+                                  backgroundColor: '#ffffff',
+                                  cursor: 'pointer'
                                 };
                             return (
                               <div

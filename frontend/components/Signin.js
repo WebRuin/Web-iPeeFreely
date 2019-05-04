@@ -1,10 +1,11 @@
-import React, { Component } from "react";
-import { Mutation } from "react-apollo";
-import styled from "styled-components";
-import gql from "graphql-tag";
-import Form from "./styles/Form";
-import Error from "./ErrorMessage";
-import { CURRENT_USER_QUERY } from "./User";
+import React, { Component } from 'react';
+import { Mutation } from 'react-apollo';
+import styled from 'styled-components';
+import gql from 'graphql-tag';
+import Form from './styles/Form';
+import Error from './ErrorMessage';
+import { CURRENT_USER_QUERY } from './User';
+import Inner from './styles/Inner';
 
 const SIGNIN_MUTATION = gql`
   mutation SIGNIN_MUTATION($email: String!, $password: String!) {
@@ -16,17 +17,11 @@ const SIGNIN_MUTATION = gql`
   }
 `;
 
-const Inner = styled.div`
-  max-width: ${props => props.theme.maxWidth};
-  margin: 0 auto;
-  padding: 4rem 2rem;
-`;
-
 class Signin extends Component {
   state = {
-    name: "",
-    email: "",
-    password: ""
+    name: '',
+    email: '',
+    password: ''
   };
 
   saveToState = e => {
@@ -48,9 +43,9 @@ class Signin extends Component {
                 e.preventDefault();
                 await signup();
                 this.setState({
-                  name: "",
-                  email: "",
-                  password: ""
+                  name: '',
+                  email: '',
+                  password: ''
                 });
               }}
             >

@@ -1,11 +1,12 @@
-import React, { Component } from "react";
-import { Mutation } from "react-apollo";
-import styled from "styled-components";
-import gql from "graphql-tag";
-import { PropTypes } from "prop-types";
-import Form from "./styles/Form";
-import Error from "./ErrorMessage";
-import { CURRENT_USER_QUERY } from "./User";
+import React, { Component } from 'react';
+import { Mutation } from 'react-apollo';
+import styled from 'styled-components';
+import gql from 'graphql-tag';
+import { PropTypes } from 'prop-types';
+import Form from './styles/Form';
+import Error from './ErrorMessage';
+import { CURRENT_USER_QUERY } from './User';
+import Inner from './styles/Inner';
 
 const RESET_MUTATION = gql`
   mutation RESET_MUTATION(
@@ -25,19 +26,13 @@ const RESET_MUTATION = gql`
   }
 `;
 
-const Inner = styled.div`
-  max-width: ${props => props.theme.maxWidth};
-  margin: 0 auto;
-  padding: 4rem 2rem;
-`;
-
 class Reset extends Component {
   static propTypes = {
     resetToken: PropTypes.string.isRequired
   };
   state = {
-    password: "",
-    confirmPassword: ""
+    password: '',
+    confirmPassword: ''
   };
 
   saveToState = e => {
@@ -63,8 +58,8 @@ class Reset extends Component {
                 e.preventDefault();
                 await reset();
                 this.setState({
-                  password: "",
-                  confirmPassword: ""
+                  password: '',
+                  confirmPassword: ''
                 });
               }}
             >

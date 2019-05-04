@@ -1,11 +1,12 @@
-import React, { Component } from "react";
-import styled from "styled-components";
-import { Query } from "react-apollo";
-import gql from "graphql-tag";
-import Bathroom from "./Bathroom";
-import Error from "./ErrorMessage";
-import Pagination from "./Pagination";
-import { perPage } from "../config";
+import React, { Component } from 'react';
+import styled from 'styled-components';
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
+import Bathroom from './Bathroom';
+import Error from './ErrorMessage';
+import Pagination from './Pagination';
+import { perPage } from '../config';
+import Inner from './styles/Inner';
 
 const ALL_BATHROOMS_QUERY = gql`
   query ALL_BATHROOMS_QUERY($skip: Int = 0, $first: Int = ${perPage}) {
@@ -26,12 +27,6 @@ const BathroomList = styled.div`
   grid-gap: 60px;
   max-width: ${props => props.theme.maxWidth};
   margin: 0 auto;
-`;
-
-const Inner = styled.div`
-  max-width: ${props => props.theme.maxWidth};
-  margin: 0 auto;
-  padding: 4rem 2rem;
 `;
 
 const Center = styled.div`
